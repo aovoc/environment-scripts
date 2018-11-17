@@ -28,6 +28,10 @@ fi
 
 echo "[global]" > ~/.config/pip/pip.conf
 echo "index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.config/pip/pip.conf
+mkdir /workspace
+tar -xvf cudnn-8.0-linux-x64-v6.0.tgz /workspace
+echo "export LD_LIBRARY_PATH=/workspace/cuda/lib64:$LD_LIBRARY_PATH" >>~/.bashrc
+source ~/.bashrc
 
 sudo apt-get -y update
 
@@ -71,6 +75,10 @@ pip install --upgrade pip
 pip_install_dependency numpy
 pip_install_dependency scikit-learn
 pip_install_dependency opencv-python
+pip_install_dependency easydict
+pip_install_dependency tensorflow-gpu==1.4.0
+pip_install_dependency  --ignore-installed keras==2.2.4
+
 #dlib cuda 
 cd /train/results/
 git clone https://github.com/davisking/dlib.git
